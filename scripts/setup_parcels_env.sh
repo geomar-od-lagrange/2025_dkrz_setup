@@ -8,11 +8,29 @@ conda config --set auto_activate_base false
 conda init
 conda shell.bash activate base
 
-# env
-curl -o /tmp/parcels_env.yml -L https://raw.githubusercontent.com/geomar-od-lagrange/parcels-container/ddf9a3a18da036ebcbb180e7ceeba533d09586a3/environment.yml
-conda env create -n parcels_ddf9a3a -f /tmp/parcels_env.yml
-conda install -n parcels_ddf9a3a -c conda-forge ipykernel ipython
+mamba create -y -n parcels_3.1.2 -c conda-forge python=3 cartopy cftime cmocean dask datashader distributed geopandas geoviews gsw h5netcdf h5py holoviews hvplot ipykernel matplotlib netcdf4 numcodecs numpy openblas openpyxl pandas papermill parcels=3.1.2 pip pys2index python-blosc rasterio regionmask scikit-learn scipy seaborn seawater sparse xarray xhistogram xoak zarr
 
 # kernel install
-conda shell.bash activate parcels_ddf9a3a
-python -m ipykernel install --user --name parcels_ddf9a3a --display-name="parcels_ddf9a3a"
+conda shell.bash activate parcels_3.1.2
+python -m ipykernel install --user --name parcels_3.1.2 --display-name="parcels_3.1.2"
+
+cat $HOME/.local/share/jupyter/kernels/parcels_3.1.2/kernel.json <<EOF
+{
+ "argv": [
+  "conda",
+  "run",
+  "-n",
+  "parcels_3.1.2",
+  "python",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "parcels_3.1.2",
+ "language": "python",
+ "metadata": {
+  "debugger": true
+ }
+}
+EOF
