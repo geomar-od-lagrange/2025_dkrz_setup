@@ -14,7 +14,7 @@ mamba create -y -n parcels_3.1.2 -c conda-forge python=3 cartopy cftime cmocean 
 conda shell.bash activate parcels_3.1.2
 python -m ipykernel install --user --name parcels_3.1.2 --display-name="parcels_3.1.2"
 
-cat $HOME/.local/share/jupyter/kernels/parcels_3.1.2/kernel.json <<EOF
+cat > $HOME/.local/share/jupyter/kernels/parcels_3.1.2/kernel.json <<EOF
 {
  "argv": [
   "conda",
