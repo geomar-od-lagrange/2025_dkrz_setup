@@ -19,5 +19,8 @@ mkdir -p ${outdir}
 
 cd ${outdir}
 
+# get mesh data for nest
+srun --export=ALL --ntasks 1 --nodes 1 --exclusive -c 1 /bin/bash -c -l 'jblob --dataset VIKING20XJRAshortmaskcell --rmin 2 --rmax 2'
+
 # get TUV data for 2010 onwards
 srun --export=ALL --ntasks 1 --nodes 1 --exclusive -c 10 /bin/bash -c -l 'for g in "T" "U" "V"; do for n in {361..480}; do echo "timeout -v 1200 jblob --dataset VIKING20XJRAshortnest${g} --rmin ${n} --rmax ${n}"; done; done | xargs -n1 -P10 -I {} bash -c -l "{}"'
