@@ -9,6 +9,6 @@
 #SBATCH --partition=compute
 #SBATCH --account=bk1450
 
-module python3
+module load python3
 
 jupyter nbconvert --execute --to=notebook --output=test_viking_data.exe.ipynb test_viking_data.ipynb
