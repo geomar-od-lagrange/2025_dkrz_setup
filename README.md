@@ -14,6 +14,8 @@ The W calculation is done with CDFTOOLS in a container built according to <https
 
 There's a notebook [notebooks/test_viking_data.ipynb](notebooks/test_viking_data.ipynb) run with [notebooks/run_test_viking_data.sh](notebooks/run_test_viking_data.sh) (results in [notebooks/test_viking_data.exe.ipynb](notebooks/test_viking_data.exe.ipynb)) which uses all the downloaded data to make sure there are no corrupted files. (Jblob tends to stall sometimes and is not really good at letting the user know what went wrong...)
 
+In [notebooks/test_W.ipynb](notebooks/test_W.ipynb), there's a notebook extracting a time series from all the W files.
+
 ## Environment
 
 ### Kernel installation
