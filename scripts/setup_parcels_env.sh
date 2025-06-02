@@ -8,7 +8,7 @@ conda config --set auto_activate_base false
 conda init
 conda shell.bash activate base
 
-mamba create -y -n parcels_3.1.2 -c conda-forge python=3 cartopy cftime cmocean dask datashader distributed geopandas geoviews gsw h5netcdf h5py holoviews hvplot ipykernel matplotlib netcdf4 numcodecs numpy openblas openpyxl pandas papermill parcels=3.1.2 pip pys2index python-blosc rasterio regionmask scikit-learn scipy seaborn seawater sparse xarray xhistogram xoak zarr
+mamba create -y -n parcels_3.1.2 -c conda-forge python=3 cartopy cftime cmocean copernicusmarine dask datashader distributed geopandas geoviews gsw h5netcdf h5py holoviews hvplot ipykernel matplotlib netcdf4 numcodecs numpy openblas openpyxl pandas papermill parcels=3.1.2 pip pys2index python-blosc rasterio regionmask scikit-learn scipy seaborn seawater sparse xarray xhistogram xoak zarr
 
 # kernel install
 conda shell.bash activate parcels_3.1.2
