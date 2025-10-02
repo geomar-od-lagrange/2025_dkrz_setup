@@ -1,37 +1,25 @@
 #!/usr/bin/env bash
 
-ENV_NAME="parcels_dev"
+ENV_NAME="parcels_dev_pixi"
+SRC_PATH=$HOME/src
 
-# init conda dirs
-module load python3
-conda config --add envs_dirs /work/bk1450/$USER/conda/envs
-conda config --add pkgs_dirs /work/bk1450/$USER/conda/pkgs
-conda config --set auto_activate_base false
-conda init
-conda shell.bash activate base
+# not entirely sure about this one
+module purge
+module load git
 
-# create dev env (still without parcels)
-mamba env create -n ${ENV_NAME} -f environment.yml
+# SKIPPED: install pixi
 
-# activate
-conda shell.bash activate ${ENV_NAME}
+# get parcels repo
+git clone https://github.com/oceanparcels/parcels.git ${SRC_PATH}/parcels_dev
 
-# add additional relevant packages
-mamba install -y -c conda-forge python=3 cartopy cftime cmocean copernicusmarine dask datashader distributed geopandas geoviews gsw h5netcdf h5py holoviews hvplot ipykernel matplotlib netcdf4 numcodecs numpy openblas openpyxl pandas papermill pys2index python-blosc rasterio regionmask scikit-learn scipy seaborn seawater sparse xarray xhistogram xoak zarr
-
-# install local copy of Parcels code
-python -m pip install -e .  # -e : editable install
-
-# install kernel
-python -m ipykernel install --user --name ${ENV_NAME} --display-name="${ENV_NAME}"
-
+mkdir -p $HOME/.local/share/jupyter/kernels/${ENV_NAME}
 cat > $HOME/.local/share/jupyter/kernels/${ENV_NAME}/kernel.json <<EOF
 {
  "argv": [
-  "conda",
+  "$HOME/.pixi/bin/pixi",
   "run",
-  "-n",
-  "${ENV_NAME}",
+  "--manifest-path",
+  "${SRC_PATH}/parcels_dev",
   "python",
   "-m",
   "ipykernel_launcher",
